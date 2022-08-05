@@ -18,9 +18,9 @@ namespace myFood_WebApp.Controllers
             _service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var allResturants =  _service.GetAll();
+            var allResturants = await _service.GetAllAsync();
             return View(allResturants);
         }
 
@@ -30,7 +30,7 @@ namespace myFood_WebApp.Controllers
             return View();
         }
 
-        //post
+        //post: Resturants/Create
         [HttpPost]
         public async Task<IActionResult> Create([Bind("LogoPicture, Name, Address")]Resturant resturant)
         {
@@ -38,10 +38,60 @@ namespace myFood_WebApp.Controllers
             {
                 return View(resturant);
             }
-            _service.Add(resturant);
+            await _service.AddAsync(resturant);
             return RedirectToAction(nameof(Index));
+        }
 
+        //Get: Resturants/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var resturantDetails = await _service.GetByIdAsync(id);
+
+            if (resturantDetails == null)
+                return View("NotFound");
+
+            return View(resturantDetails);
 
         }
+
+        //Get: Resturants/Edit
+        public async Task<IActionResult> Edit(int id)
+        {
+            var resturantDetails = await _service.GetByIdAsync(id);
+            if (resturantDetails == null) return View("NotFound");
+            return View(resturantDetails);
+        }
+
+        //post: Resturants/Create (update)
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id, LogoPicture, Name, Address")] Resturant resturant)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(resturant);
+            }
+            await _service.updateAsync(id, resturant);
+            return RedirectToAction(nameof(Index));
+        }
+
+        //Get: Resturants/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var resturantDetails = await _service.GetByIdAsync(id);
+            if (resturantDetails == null) return View("NotFound");
+            return View(resturantDetails);
+        }
+
+        //post: Resturants/Create (update)
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var resturantDetails = await _service.GetByIdAsync(id);
+            if (resturantDetails == null) return View("NotFound");
+            await _service.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

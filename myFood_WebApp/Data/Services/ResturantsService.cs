@@ -16,34 +16,38 @@ namespace myFood_WebApp.Data.Services
         {
             _context = context;
         }
-        public async Task Add(Resturant resturant)
+        public async Task AddAsync(Resturant resturant)
         {
-             _context.Resturants.Add(resturant);
-             _context.SaveChanges();
+             await _context.Resturants.AddAsync(resturant);
+             await _context.SaveChangesAsync();
         }
 
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Resturants.FirstOrDefaultAsync(n => n.Id == id);
+            _context.Resturants.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Resturant> GetAll()
+        public async Task<IEnumerable<Resturant>> GetAllAsync()
         {
-            var result = _context.Resturants.ToList();
+            var result = await _context.Resturants.ToListAsync();
             return result;
         }
 
 
-        public Resturant GetById(int id)
+        public async Task<Resturant> GetByIdAsync(int id)
         {
-            var result = _context.Resturants.FirstOrDefault(n => n.Id == id);
+            var result = await _context.Resturants.FirstOrDefaultAsync(n => n.Id == id);
             return result;
         }
 
-        public Resturant update(int id, Resturant newResturant)
+        public async Task<Resturant> updateAsync(int id, Resturant newResturant)
         {
-            throw new NotImplementedException();
+            _context.Update(newResturant);
+            await _context.SaveChangesAsync();
+            return newResturant;
         }
     }
 }

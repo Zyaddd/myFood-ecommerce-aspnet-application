@@ -59,6 +59,10 @@ namespace myFood_WebApp
 
             app.UseEndpoints(endpoints =>
             {
+               /* endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area=exist}/{controller=Foods}/{action=Index}");
+*/
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

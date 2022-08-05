@@ -1,0 +1,42 @@
+﻿@model Resturant
+
+@{ 
+    ViewData["Title"] = "Update Resturant";
+}
+
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <h3 class="text-center">Update resturant</h3>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="LogoPicture" class="control-label"></label>
+                        <input asp-for="LogoPicture" class="form-control" />
+                        <span asp-validation-for="LogoPicture" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Go Back</a>
+                    </div>
+                </form>
+
+                
+            </div>
+        </div>
+    </div>
+</div>

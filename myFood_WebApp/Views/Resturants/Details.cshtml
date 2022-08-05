@@ -1,0 +1,40 @@
+﻿@model Resturant
+
+@{
+    ViewData["Title"] = "Add a new Resturant";
+}
+
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <h3 class="text-center">Details for @Model.Name</h3>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+              
+                   
+
+                    <div class="form-group">
+                        <label asp-for="LogoPicture" class="control-label"></label>
+                        <input asp-for="LogoPicture" class="form-control" readonly/>
+                        <span asp-validation-for="LogoPicture" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" readonly/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" readonly/>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Go Back</a>
+                    </div>
+             
+            </div>
+        </div>
+    </div>
+</div>

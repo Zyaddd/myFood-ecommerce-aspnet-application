@@ -8,11 +8,11 @@ namespace myFood_WebApp.Data.Services
 {
     public interface IResturantsService
     {
-        IEnumerable<Resturant> GetAll();
-        Resturant GetById(int id);
-        Task Add(Resturant resturant);
-        Resturant update(int id, Resturant newResturant);
-        void Delete(int id);
+        Task<IEnumerable<Resturant>> GetAllAsync();
+        Task<Resturant> GetByIdAsync(int id);
+        Task AddAsync(Resturant resturant);
+        Task<Resturant> updateAsync(int id, Resturant newResturant);
+        Task DeleteAsync(int id);
 
     }
 }
