@@ -1,0 +1,57 @@
+﻿@*Define model*@
+@model IEnumerable<Food>
+
+@*Define ViewData*@
+@{
+    ViewData["Title"] = "List of Foods";
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <!--Cards Grid-->
+        <div class="col-md-6 col-sm-4 col-lg-3 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row">
+
+                    <!--Card Header-->
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Name
+                                    <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!--Card body content-->
+                    <div class="col-md-6">
+                        <img src="@item.FoodPictureURL" width="100%" alt="@item.Name" style="width: 150px; height:150px;" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text"><b>Resturant: </b>@item.Resturant.Name</p>
+                            <p class="card-text"><b>Food Category: </b>@item.FoodCategory</p>
+                            <p class="card-text"><b>Description: </b>@item.Description</p>
+                            <p class="card-text"><b class="text-success">Price: </b>@item.Price.ToString("c")</p>
+                        </div>
+                    </div>
+
+                    <!--Card Footer-->
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right"><i class="bi bi-eye-fill mr-2"></i>Show Details</a>
+                                <a class="btn btn-success text-white"><i class="bi bi-cart-plus mr-2"></i>Add to Cart</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
