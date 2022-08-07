@@ -91,5 +91,14 @@ namespace myFood_WebApp.Data.Cart
                 .Select(n => n.Food.Price * n.Amount).Sum();
             return total;
         }
+
+        public async Task ClearShoppingCartAsync()
+        {
+            var items = await _context.ShoppingCartItems.Where(n => n.ShoppingCartId ==
+           ShoppingCartId).Include(n => n.Food).ToListAsync();
+            _context.ShoppingCartItems.RemoveRange(items);
+            await _context.SaveChangesAsync();
+
+        }
     }
 }

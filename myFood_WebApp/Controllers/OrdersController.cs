@@ -13,13 +13,22 @@ namespace myFood_WebApp.Controllers
     {
         private readonly IFoodsService _foodService;
         private readonly ShoppingCart _shoppingCart;
-        public OrdersController(IFoodsService foodsService, ShoppingCart shoppingCart)
+        private readonly IOrdersService _ordersService;
+        public OrdersController(IFoodsService foodsService, ShoppingCart shoppingCart, IOrdersService ordersService)
         {
             _foodService = foodsService;
             _shoppingCart = shoppingCart;
-
+            _ordersService = ordersService;
         }
         
+        public async Task<IActionResult> Index()
+        {
+            string userId = "";
+
+            var orders = await _ordersService.GetOrdersByUserIdAsync(userId);
+            return View(orders);
+
+        }
 
         public IActionResult ShoppingCart()
         {
@@ -34,7 +43,7 @@ namespace myFood_WebApp.Controllers
             return View(response);
         }
 
-        public async Task<RedirectToActionResult> AddToShoppingCart(int id)
+        public async Task<IActionResult> AddToShoppingCart(int id)
         {
             var item = await _foodService.GetFoodByIdAsync(id);
 
@@ -45,6 +54,30 @@ namespace myFood_WebApp.Controllers
 
             return RedirectToAction(nameof(ShoppingCart));
 
+        }
+
+        public async Task<IActionResult> RemoveFromShoppingCart(int id)
+        {
+            var item = await _foodService.GetFoodByIdAsync(id);
+
+            if (item != null)
+            {
+                _shoppingCart.RemoveItemFromCart(item);
+            }
+
+            return RedirectToAction(nameof(ShoppingCart));
+
+        }
+
+        public async Task<IActionResult> CompleteOrder()
+        {
+            var items = _shoppingCart.GetShoppingCartItems();
+            string userId = "";
+            string userEmailAddress = "";
+
+            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
+            await _shoppingCart.ClearShoppingCartAsync();
+            return View("OrderCompleted");
         }
     }
 }

@@ -35,6 +35,8 @@ namespace myFood_WebApp
             //Services Configurations
             services.AddScoped<IResturantsService, ResturantsService>();
             services.AddScoped<IFoodsService, FoodsService>();
+            services.AddScoped<IOrdersService, OrdersService>();
+
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));

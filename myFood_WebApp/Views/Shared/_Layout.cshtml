@@ -25,7 +25,7 @@
 
                         <!--Dropdown menu-->
                         <li class="nav-item dropdown">
-                            
+
                             <div class="dropdown ">
                                 <button class="btn btn-outline-light text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="bi bi-gear mr-2"></i>Manegement
@@ -38,10 +38,21 @@
                         </li>
                     </ul>
 
-                    <form class="form-inline" style="padding-right: 25px;" asp-controller="Foods" asp-action="Filter">
-                        <input name="searchString" type="text" class="form-control" placeholder="Search..."/>
-                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-                    </form>
+                    <ul class="navbar-nav">
+                        @await Component.InvokeAsync("ShoppingCartSummary")
+                    </ul>
+
+                    @*User profile section*@
+                    <div class="dropdown">
+                        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-badge"></i> Hello User
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="profile-btn">
+                            <li>
+                                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">Orders</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -53,10 +64,10 @@
     </div>
 
     @*<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - myFood
-        </div>
-    </footer>*@
+            <div class="container">
+                &copy; 2022 - myFood
+            </div>
+        </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
