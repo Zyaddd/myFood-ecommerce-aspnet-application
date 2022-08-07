@@ -70,7 +70,7 @@ namespace myFood_WebApp.Controllers
             {
                 return View(resturant);
             }
-            await _service.updateAsync(id, resturant);
+            await _service.UpdateAsync(id, resturant);
             return RedirectToAction(nameof(Index));
         }
 

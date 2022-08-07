@@ -1,0 +1,60 @@
+﻿@using myFood_WebApp.Data.ViewModel;
+
+@model ShoppingCartViewModel
+
+
+@{ 
+    ViewData["Title"] = "Shopping Cart summart";
+
+}
+
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="text-center">
+            <h2>Shopping Cart Summary</h2>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Selected amount</th>
+                    <th>Food</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.ShoppingCart.ShoppingCartItems)
+            {
+
+                <tr>
+                    <td class="align-middle">@item.Amount</td>
+                    <td class="align-middle">@item.Food.Name</td>
+                    <td class="align-middle">@item.Food.Price.ToString("c")</td>
+                    <td class="align-middle">@((item.Amount*item.Food.Price).ToString("c"))</td>
+                    <td class="align-middle">@item.Amount</td>
+
+                </tr>
+            }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td><b>Total: </b></td>
+                    <td>
+                        @Model.ShoppingCartTotal.ToString("c")
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-center">
+            <div class="btn-group">
+                <a class="btn btn-outline-success" asp-controller="Foods" asp-action="Index">Add more items</a>
+            </div>
+        </div>
+    </div>
+</div>

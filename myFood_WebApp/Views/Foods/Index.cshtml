@@ -1,6 +1,5 @@
 ﻿@*Define model*@
 @model IEnumerable<Food>
-
 @*Define ViewData*@
 @{
     ViewData["Title"] = "List of Foods";
@@ -35,7 +34,7 @@
                         <div class="card-body">
                             <p class="card-text"><b>Resturant: </b>@item.Resturant.Name</p>
                             <p class="card-text"><b>Food Category: </b>@item.FoodCategory</p>
-                            <p class="card-text"><b>Description: </b>@item.Description</p>
+                            @*<p class="card-text"><b>Description: </b>@item.Description</p>*@
                             <p class="card-text"><b class="text-success">Price: </b>@item.Price.ToString("c")</p>
                         </div>
                     </div>
@@ -44,8 +43,10 @@
                     <div class="col-md-12">
                         <div class="card-footer">
                             <p class="card-text">
-                                <a class="btn btn-outline-primary float-right"><i class="bi bi-eye-fill mr-2"></i>Show Details</a>
-                                <a class="btn btn-success text-white"><i class="bi bi-cart-plus mr-2"></i>Add to Cart</a>
+                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill mr-2"></i>Show Details
+                                </a>
+                                <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@item.Id"><i class="bi bi-cart-plus mr-2"></i>Add to Cart</a>
                             </p>
                         </div>
                     </div>
@@ -55,3 +56,5 @@
     }
 
 </div>
+
+@await Html.PartialAsync("_CreateItem", "Foods")

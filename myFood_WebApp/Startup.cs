@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using myFood_WebApp.Data;
+using myFood_WebApp.Data.Cart;
 using myFood_WebApp.Data.Services;
 using System;
 using System.Collections.Generic;
@@ -32,7 +34,12 @@ namespace myFood_WebApp
 
             //Services Configurations
             services.AddScoped<IResturantsService, ResturantsService>();
+            services.AddScoped<IFoodsService, FoodsService>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+            services.AddSession();
             services.AddControllersWithViews();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
@@ -54,7 +61,7 @@ namespace myFood_WebApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

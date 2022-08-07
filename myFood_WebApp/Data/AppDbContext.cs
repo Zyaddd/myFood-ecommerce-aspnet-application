@@ -16,7 +16,10 @@ namespace myFood_WebApp.Data
         public DbSet<Food> Foods { get; set; }
         public DbSet<Resturant> Resturants { get; set; }
 
-
+        //Orders Tables
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems{ get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems{ get; set; }
 
     }
 }

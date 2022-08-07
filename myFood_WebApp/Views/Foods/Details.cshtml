@@ -1,0 +1,62 @@
+﻿@*Define model*@
+@model Food
+@*Define ViewData*@
+@{
+    ViewData["Title"] = "Food Details";
+}
+
+<div class="row">
+
+        <!--Cards Grid-->
+        <div class="col-md-8  offset-4 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row">
+
+                    <!--Card Header-->
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @Model.Name
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!--Card body content-->
+                    <div class="col-md-4">
+                        <img src="@Model.FoodPictureURL" width="100%" alt="@Model.Name" style="width: 150px; height:150px;" />
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-text"><b>Resturant: </b>@Model.Resturant.Name</p>
+                            <p class="card-text"><b>Food Category: </b>@Model.FoodCategory</p>
+                            <p class="card-text"><b>Description: </b>@Model.Description</p>
+                            <p class="card-text"><b class="text-success">Price: </b>@Model.Price.ToString("c")</p>
+                            <p class="card-text"><b>Resturant: </b>
+                                <div class="text-center column">
+                                    <img src="@Model.Resturant.LogoPicture" style="max-width: 150px"/>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+
+                 
+                    <!--Card Footer-->
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                    Go Back
+                                </a>
+                                <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus mr-2"></i>Add to Cart</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</div>

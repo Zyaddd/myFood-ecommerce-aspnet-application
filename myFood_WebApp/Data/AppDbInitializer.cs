@@ -62,7 +62,7 @@ namespace myFood_WebApp.Data
                             Description = "Description 1",
                             FoodCategory = FoodCategory.Burger,
                             FoodPictureURL = "https://athensstreetfoodfestival.gr/wp-content/uploads/2022/05/BURGER-JOINT-ASFF.jpg",
-                            ResturantID = 1,
+                            ResturantID = 6,
                         },
 
                         new Food()
@@ -72,17 +72,25 @@ namespace myFood_WebApp.Data
                             Description = "Description 2",
                             FoodCategory = FoodCategory.Pizza,
                             FoodPictureURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/390px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
-                            ResturantID = 2,
+                            ResturantID = 5,
                         },
-
                         new Food()
                         {
-                            Name = "Food 3",
-                            Price = 34.0,
-                            Description = "Description 3",
-                            FoodCategory = FoodCategory.Beverage,
-                            FoodPictureURL = "https://cdnprod.mafretailproxy.com/sys-master-root/hc9/he7/14149307760670/557037_main.jpg_480Wx480H",
-                            ResturantID = 3,
+                            Name = "Food 1",
+                            Price = 12.24,
+                            Description = "Description 1",
+                            FoodCategory = FoodCategory.Burger,
+                            FoodPictureURL = "https://athensstreetfoodfestival.gr/wp-content/uploads/2022/05/BURGER-JOINT-ASFF.jpg",
+                            ResturantID = 6,
+                        },
+                        new Food()
+                        {
+                            Name = "Food 1",
+                            Price = 12.24,
+                            Description = "Description 1",
+                            FoodCategory = FoodCategory.Burger,
+                            FoodPictureURL = "https://athensstreetfoodfestival.gr/wp-content/uploads/2022/05/BURGER-JOINT-ASFF.jpg",
+                            ResturantID = 7,
                         },
 
 

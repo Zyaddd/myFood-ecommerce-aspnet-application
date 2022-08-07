@@ -1,4 +1,5 @@
-﻿using System;
+﻿using myFood_WebApp.Data.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace myFood_WebApp.Models
 {
-    public class Resturant
+    public class Resturant:IEntityBase
     {
         [Key]
         public int Id { get; set; }
