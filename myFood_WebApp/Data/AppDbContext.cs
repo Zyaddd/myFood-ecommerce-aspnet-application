@@ -4,10 +4,11 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using myFood_WebApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace myFood_WebApp.Data
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -18,8 +19,8 @@ namespace myFood_WebApp.Data
 
         //Orders Tables
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems{ get; set; }
-        public DbSet<ShoppingCartItem> ShoppingCartItems{ get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
     }
 }
